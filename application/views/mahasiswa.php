@@ -15,6 +15,7 @@
     <button class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-plus" ></i> Tambah Data Mahasiswa</button>
 
     <a class="btn btn-danger" href="<?php echo base_url('mahasiswa/cetak') ?>"><i class="fa fa-print"></i> Print </a>
+    <a class="btn btn-warning" href="<?php echo base_url('mahasiswa/pdf') ?>"><i class="fa fa-file"></i> PDF </a>
 
     	<table class="table">
     		<tr>
