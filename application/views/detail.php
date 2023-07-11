@@ -29,7 +29,14 @@
 		<th>Email</th>
 		<th><?php echo $detail->email ?></th>
 	</tr>
+	<tr>
+		<td>
+			<img src="<?php echo base_url(); ?>assets/foto/<?php echo $detail->foto; ?>" width="90" height="110">
+		</td>
+		<td></td>
+	</tr>
 	
 </table>
+<a href="<?php echo base_url('mahasiswa/index') ?>" class="btn btn-primary">Kembali</a>
 	</section>
 </div>

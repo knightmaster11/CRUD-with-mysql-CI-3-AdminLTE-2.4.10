@@ -20,6 +20,18 @@ class Mahasiswa extends CI_Controller{
 			$alamat	= $this->input->post('alamat');
 			$no_telp	= $this->input->post('no_telp');
 			$email	= $this->input->post('email');
+			$foto  =$_FILES['foto'];
+			if ($foto=''){}else{
+				$config['upload_path'] ='./assets/foto';
+				$config['allowed_types'] ='jpg|png|gif';
+
+				$this->load->library('upload',$config);
+				if(!$this->upload->do_upload('foto')){
+					echo "gagal Upload foto !";die();
+				}else {
+					$foto=$this->upload->data('file_name');
+				}
+			}
 
 			$data = array(
 				'nama' 		=> $nama,
@@ -29,6 +41,7 @@ class Mahasiswa extends CI_Controller{
 				'alamat'	=> $alamat,
 				'no_telp'	=> $no_telp,
 				'email'	=> $email, 
+				'foto' => $foto,
 				);
 
 			$this->m_mahasiswa->input_data($data, 'tb_mahasiswa');
@@ -85,6 +98,10 @@ class Mahasiswa extends CI_Controller{
 		$this->load->view('template/sidebar');
 		$this->load->view('detail', $data);
 		$this->load->view('template/footer');
+	}
+	public function cetak(){
+		$data['mahasiswa'] = $this->m_mahasiswa->tampil_data('tb_mahasiswa')->result();
+		$this->load->view('print_mahasiswa', $data);
 	}
 }
 

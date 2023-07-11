@@ -11,7 +11,11 @@
     </section>
 
     <section class="content">
+    
     <button class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-plus" ></i> Tambah Data Mahasiswa</button>
+
+    <a class="btn btn-danger" href="<?php echo base_url('mahasiswa/cetak') ?>"><i class="fa fa-print"></i> Print </a>
+
     	<table class="table">
     		<tr>
     			<td>No</td>
@@ -50,7 +54,9 @@
         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form method="post" action="<?php echo base_url().'mahasiswa/tambah_aksi' ?>">
+        <!-- <form method="post" action="<?php echo base_url().'mahasiswa/tambah_aksi' ?>"> -->
+        <?php echo form_open_multipart('mahasiswa/tambah_aksi'); ?>
+
         	<div class="form-group">
         		<label>Nama Mahasiswa</label>
         		<input type="text" name="nama" class="form-control">
@@ -89,9 +95,15 @@
         		<input type="text" name="email" class="form-control">
         	</div>
 
+            <div class="form-group">
+                <label>Upload foto</label>
+                <input type="file" name="foto" class="form-control">
+            </div>
+
 		<button type="reset" class="btn btn-danger" data-dismiss="modal">Reset</button>
         <button type="submit" class="btn btn-primary">Save</button>
-        </form>
+        <!-- </form> -->
+        <?php echo form_close(); ?>
       </div>
     </div>
   </div>

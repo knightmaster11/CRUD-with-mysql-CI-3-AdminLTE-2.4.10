@@ -43,5 +43,5 @@
 			<button type="submit" class="btn btn-primary">Simpan</button>
 		</form>
 		<?php } ?>
-	</section>ion
+	</section>
 </div>
