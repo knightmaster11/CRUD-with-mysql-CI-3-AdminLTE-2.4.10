@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Jul 2023 pada 11.51
+-- Waktu pembuatan: 11 Jul 2023 pada 14.52
 -- Versi server: 10.1.38-MariaDB
 -- Versi PHP: 5.6.40
 
@@ -37,7 +37,7 @@ CREATE TABLE `tb_mahasiswa` (
   `alamat` varchar(120) NOT NULL,
   `email` varchar(20) NOT NULL,
   `no_telp` varchar(20) NOT NULL,
-  `foto` double NOT NULL
+  `foto` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -45,8 +45,9 @@ CREATE TABLE `tb_mahasiswa` (
 --
 
 INSERT INTO `tb_mahasiswa` (`id`, `nama`, `nim`, `tgl_lahir`, `jurusan`, `alamat`, `email`, `no_telp`, `foto`) VALUES
-(1, 'setiono iwan', 22121, '2023-07-11', 'teknik informatika', 'cikarang', 'ass@gmail.com', '890808111', 0),
-(2, 'anto', 2323, '2023-07-11', 'Teknik Komputer', '', '', '', 0);
+(1, 'setiono iwan', 22121, '2023-07-11', 'teknik informatika', 'cikarang', 'ass@gmail.com', '890808111', '0'),
+(2, 'anto', 2323, '2023-07-11', 'Teknik Komputer', '', '', '', '0'),
+(7, 'setiono iwan', 9090, '2023-07-27', 'Teknik Komputer', 'cikarang', 'ass@gmail.com', '0890808111', 'jaket_tampak_depan.PNG');
 
 --
 -- Indexes for dumped tables
@@ -66,7 +67,7 @@ ALTER TABLE `tb_mahasiswa`
 -- AUTO_INCREMENT untuk tabel `tb_mahasiswa`
 --
 ALTER TABLE `tb_mahasiswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
