@@ -174,8 +174,15 @@ class Mahasiswa extends CI_Controller{
 		$writer->save('php://output');
 
 		exit;
-
-
+	}
+	public function search()
+	{
+		$keyword =$this->input->post('keyword');
+		$data['mahasiswa']=$this->m_mahasiswa->get_keyword($keyword);
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar');
+		$this->load->view('mahasiswa', $data);
+		$this->load->view('template/footer');
 
 	}
 

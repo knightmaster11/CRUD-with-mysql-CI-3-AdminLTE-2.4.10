@@ -28,6 +28,13 @@
   </ul>
 </div>
     <!-- end dropdown -->
+
+    <div class="navbar-form navbar-right">
+        <?php echo form_open('mahasiswa/search') ?>
+        <input type="text" name="keyword" class="form-control" placeholder="search">
+        <button type="submit" class="btn btn-success">cari</button>
+        <?php echo form_close() ?>
+    </div>
     	<table class="table">
     		<tr>
     			<td>No</td>
