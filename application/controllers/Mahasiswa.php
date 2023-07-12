@@ -121,28 +121,64 @@ class Mahasiswa extends CI_Controller{
 		ob_end_clean();
 		$this->dompdf->stream("laporan_mahasiswa.pdf", array('Attachment' => 1));
 	}
+	public function excel()
+	{
+		$data['mahasiswa'] = $this->m_mahasiswa->tampil_data('tb_mahasiswa')->result();
+
+		require(APPPATH. 'PHPExcel-1.8/Classes/PHPExcel.php');
+		require(APPPATH. 'PHPExcel-1.8/Classes/PHPExcel/Writer/Excel2007.php');
+
+		$object = new PHPExcel();
+
+		$object->getProperties()->setCreator("knight master");
+		$object->getProperties()->setLastModifiedBy("knight master");
+		$object->getProperties()->setTitle("Data Mahasiswa");
+
+		$object->setActiveSheetIndex(0);
+
+		$object->getActiveSheet()->setCellValue('A1', 'NO');
+		$object->getActiveSheet()->setCellValue('B1', 'NAMA MAHASISWA');
+		$object->getActiveSheet()->setCellValue('C1', 'NIM');
+		$object->getActiveSheet()->setCellValue('D1', 'TANGGAL LAHIR');
+		$object->getActiveSheet()->setCellValue('E1', 'JURUSAN');
+		$object->getActiveSheet()->setCellValue('F1', 'ALAMAT');
+		$object->getActiveSheet()->setCellValue('G1', 'EMAIL');
+		$object->getActiveSheet()->setCellValue('H1', 'NO TELPON');
+
+		$baris = 2;
+		$no = 1;
+
+		foreach ($data['mahasiswa'] as $mhs ) {
+			$object->getActiveSheet()->setCellValue('A'.$baris, $no++);
+			$object->getActiveSheet()->setCellValue('B'.$baris, $mhs->nama);
+			$object->getActiveSheet()->setCellValue('C'.$baris, $mhs->nim);
+			$object->getActiveSheet()->setCellValue('D'.$baris, $mhs->tgl_lahir);
+			$object->getActiveSheet()->setCellValue('E'.$baris, $mhs->jurusan);
+			$object->getActiveSheet()->setCellValue('F'.$baris, $mhs->alamat);
+			$object->getActiveSheet()->setCellValue('G'.$baris, $mhs->email);
+			$object->getActiveSheet()->setCellValue('H'.$baris, $mhs->no_telp);
+
+			$baris++;
+
+		}
+		$filename="Data_mahasiswa".'.xlsx';
+
+		$object->getActiveSheet()->setTitle("Data Mahasiswa");
+
+		header('Content-Type: application/vnd.openxmlformats-officedokument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment;filename="'.$filename. '"');
+		header('Cache-Control: max-age=0');
+
+		ob_end_clean();
+		$writer=PHPExcel_IOFactory::createwriter($object, 'Excel2007');
+		$writer->save('php://output');
+
+		exit;
 
 
-	public function contoh()
-    {
-        // panggil library yang kita buat sebelumnya yang bernama pdfgenerator
-        $this->load->library('pdfgenerator');
-        
-        // title dari pdf
-        $this->data['title_pdf'] = 'Laporan Penjualan Toko Kita';
-        
-        // filename dari pdf ketika didownload
-        $file_pdf = 'laporan_penjualan_toko_kita';
-        // setting paper
-        $paper = 'A4';
-        //orientasi paper potrait / landscape
-        $orientation = "portrait";
-        
-		$html = $this->load->view('laporan_contoh_pdf',$this->data, true);	    
-        
-        // run dompdf
-        $this->pdfgenerator->generate($html, $file_pdf,$paper,$orientation);
-    }
+
+	}
+
 }
 
  ?>
