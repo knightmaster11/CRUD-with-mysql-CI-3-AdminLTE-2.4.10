@@ -12,6 +12,7 @@
 
     <section class="content">
     
+    <?php echo $this->session->flashdata('message'); ?>
     <button class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-plus" ></i> Tambah Data Mahasiswa</button>
 
     <a class="btn btn-danger" href="<?php echo base_url('mahasiswa/cetak') ?>"><i class="fa fa-print"></i> Print </a>

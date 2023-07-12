@@ -45,6 +45,10 @@ class Mahasiswa extends CI_Controller{
 				);
 
 			$this->m_mahasiswa->input_data($data, 'tb_mahasiswa');
+			$this->session->set_flashdata('message','<div class="alert alert-success alert-dismissible" role="alert">
+ 													 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  														 Data Berhasil Ditambahkan
+													</div>');
 			redirect('mahasiswa/index'); 
 
 	}
@@ -52,6 +56,11 @@ class Mahasiswa extends CI_Controller{
 	{
 		$where = array ('id'=>$id);
 		$this->m_mahasiswa->hapus_data($where,'tb_mahasiswa');
+					$this->session->set_flashdata('message','<div class="alert alert-danger alert-dismissible" role="alert">
+ 													 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  														 Data Berhasil DiHapus
+													</div>');
+
 		redirect('mahasiswa/index');
 	}
 	public function edit($id)
@@ -88,6 +97,10 @@ class Mahasiswa extends CI_Controller{
 			'id' => $id 
 			);
 		$this->m_mahasiswa->update_data($where,$data,'tb_mahasiswa');
+		$this->session->set_flashdata('message','<div class="alert alert-info alert-dismissible" role="alert">
+ 													 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  														 Data Berhasil Diupdate
+													</div>');
 		redirect('mahasiswa/index');
 	}
 	public function detail($id){
